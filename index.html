@@ -201,12 +201,14 @@
 </script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  var map = L.map('map').setView([32.85, -96.95], 10);
+  var map = L.map('map').setView([32.82, -97.05], 9);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
-  // Concrete plant markers (added as locations are confirmed)
+  // Coverage: Dallas–Fort Worth only
   var plants = [
+    { lat: 32.7767, lng: -96.7970, name: 'Dallas' },
+    { lat: 32.7555, lng: -97.3308, name: 'Fort Worth' }
   ];
   plants.forEach(function(p) {
     L.marker([p.lat, p.lng]).addTo(map).bindPopup(p.name);
