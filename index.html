@@ -31,6 +31,10 @@
   footer { background:#20242a; color:#c9cdd4; text-align:center; padding:26px 20px; font-size:14px; }
   .wa-float { position:fixed; right:18px; bottom:18px; background:#25d366; color:#fff; text-decoration:none; font-weight:bold; padding:13px 18px; border-radius:999px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  #map { height: 420px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+</style>
 </head>
 <body>
 
@@ -66,7 +70,7 @@
 
 <section>
   <h2>Service Area</h2>
-  <p style="margin-bottom:14px;">Proudly serving the Dallas–Fort Worth area, including:</p>
+  <p style="margin-bottom:14px;">Proudly serving all of Dallas–Fort Worth — the entire metroplex and surrounding areas, including:</p>
   <div class="areas">
     <p>• Dallas</p>
     <p>• Fort Worth</p>
@@ -78,6 +82,21 @@
     <p>• Richardson</p>
     <p>• Grand Prairie</p>
     <p>• Carrollton</p>
+  </div>
+</section>
+
+<section>
+  <h2>Coverage Map — Dallas–Fort Worth</h2>
+  <p style="margin-bottom:14px;">We dispatch concrete from plants across the metroplex, so your pour arrives fast anywhere in Dallas–Fort Worth and surrounding areas.</p>
+  <div id="map"></div>
+</section>
+
+<section>
+  <h2>Salesperson of the Month</h2>
+  <div class="contact-box" style="text-align:center;">
+    <img src="vendedor-mes.jpg" alt="Salesperson of the Month" style="width:220px;height:220px;object-fit:cover;border-radius:50%;margin-bottom:14px;">
+    <p style="font-size:22px;"><strong>Carlos Mendoza</strong></p>
+    <p>October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.</p>
   </div>
 </section>
 
@@ -98,5 +117,18 @@
 
 <a class="wa-float" href="https://wa.me/17863662018" target="_blank" rel="noopener">WhatsApp Us</a>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  var map = L.map('map').setView([32.85, -96.95], 10);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+  // Concrete plant markers (added as locations are confirmed)
+  var plants = [
+  ];
+  plants.forEach(function(p) {
+    L.marker([p.lat, p.lng]).addTo(map).bindPopup(p.name);
+  });
+</script>
 </body>
 </html>
