@@ -34,6 +34,23 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
   #map { height: 420px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+  .carousel { position: relative; max-width: 960px; margin: 0 auto; overflow: hidden; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+  .carousel .slide { display: none; }
+  .carousel .slide.active { display: block; }
+  .carousel img { width: 100%; height: 440px; object-fit: cover; display: block; }
+  .carousel .caption { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(32,36,42,.75); color: #fff; padding: 12px 18px; font-size: 16px; }
+  .carousel button.nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(32,36,42,.6); color: #fff; border: none; font-size: 26px; padding: 8px 14px; cursor: pointer; border-radius: 6px; }
+  .carousel button.prev { left: 10px; }
+  .carousel button.next { right: 10px; }
+  .carousel .dots { position: absolute; bottom: 52px; width: 100%; text-align: center; }
+  .carousel .dot { display: inline-block; width: 11px; height: 11px; margin: 0 4px; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; }
+  .carousel .dot.on { background: #f5a623; }
+  #deliveryMap { height: 380px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.15); margin-bottom: 16px; }
+  .quote-form { background: #fff; border-radius: 10px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .quote-form label { display: block; font-weight: bold; margin: 12px 0 5px; }
+  .quote-form input, .quote-form textarea { width: 100%; padding: 11px; border: 1px solid #c9cdd4; border-radius: 6px; font-size: 16px; }
+  .quote-form .send { display: block; width: 100%; text-align: center; background: #25d366; color: #fff; font-weight: bold; font-size: 18px; padding: 14px; border: none; border-radius: 6px; cursor: pointer; margin-top: 18px; }
+  #pinInfo { font-size: 15px; color: #444; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -49,6 +66,36 @@
   <a class="btn btn-call" href="tel:+17863662018">Get a Quote: (786) 366-2018</a>
   <a class="btn btn-wa" href="https://wa.me/17863662018" target="_blank" rel="noopener">Message us on WhatsApp</a>
 </div>
+
+<section>
+  <h2>Our Work</h2>
+  <div class="carousel" id="carousel">
+    <div class="slide active">
+      <img src="carrusel-1.jpg" alt="JMP mixer truck pouring concrete">
+      <div class="caption">On-time pours, every time — JMP on the job</div>
+    </div>
+    <div class="slide">
+      <img src="carrusel-2.jpg" alt="Crew finishing a concrete slab">
+      <div class="caption">Crews that finish clean and on schedule</div>
+    </div>
+    <div class="slide">
+      <img src="carrusel-3.jpg" alt="JMP truck with the Dallas skyline">
+      <div class="caption">Serving all of Dallas–Fort Worth, 24/7</div>
+    </div>
+    <div class="slide">
+      <img src="carrusel-4.jpg" alt="Finished concrete driveway">
+      <div class="caption">Driveways and patios done right</div>
+    </div>
+    <button class="nav prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="nav next" onclick="moveSlide(1)">&#10095;</button>
+    <div class="dots">
+      <span class="dot on" onclick="goSlide(0)"></span>
+      <span class="dot" onclick="goSlide(1)"></span>
+      <span class="dot" onclick="goSlide(2)"></span>
+      <span class="dot" onclick="goSlide(3)"></span>
+    </div>
+  </div>
+</section>
 
 <section>
   <h2>Our Services</h2>
@@ -92,6 +139,28 @@
 </section>
 
 <section>
+  <h2>Where Do You Need the Concrete?</h2>
+  <p style="margin-bottom:14px;">Tap the map to drop a pin on the exact spot where you need the concrete delivered, then send us your info — we'll get back to you with a quote.</p>
+  <div id="deliveryMap"></div>
+  <p id="pinInfo">No pin yet — tap the map to mark your delivery location.</p>
+  <div class="quote-form">
+    <label for="qName">Your name *</label>
+    <input id="qName" type="text" placeholder="Full name">
+    <label for="qPhone">Phone</label>
+    <input id="qPhone" type="tel" placeholder="(555) 555-5555">
+    <label for="qAddress">Delivery address</label>
+    <input id="qAddress" type="text" placeholder="Street, city, ZIP">
+    <label for="qYards">How many yards do you need?</label>
+    <input id="qYards" type="number" min="1" step="0.5" placeholder="e.g. 6">
+    <label for="qDate">Delivery date</label>
+    <input id="qDate" type="date">
+    <label for="qNotes">Notes</label>
+    <textarea id="qNotes" rows="3" placeholder="Mix/strength, access details, anything we should know"></textarea>
+    <button class="send" onclick="sendQuote()">Send by WhatsApp</button>
+  </div>
+</section>
+
+<section>
   <h2>Salesperson of the Month</h2>
   <div class="contact-box" style="text-align:center;">
     <img src="vendedor-mes.jpg" alt="Salesperson of the Month" style="width:220px;height:220px;object-fit:cover;border-radius:50%;margin-bottom:14px;">
@@ -117,6 +186,19 @@
 
 <a class="wa-float" href="https://wa.me/17863662018" target="_blank" rel="noopener">WhatsApp Us</a>
 
+<script>
+  var slideIdx = 0;
+  var slides = document.querySelectorAll('#carousel .slide');
+  var dots = document.querySelectorAll('#carousel .dot');
+  function showSlide(n) {
+    slideIdx = (n + slides.length) % slides.length;
+    slides.forEach(function(s, i) { s.classList.toggle('active', i === slideIdx); });
+    dots.forEach(function(d, i) { d.classList.toggle('on', i === slideIdx); });
+  }
+  function moveSlide(d) { showSlide(slideIdx + d); }
+  function goSlide(n) { showSlide(n); }
+  setInterval(function() { showSlide(slideIdx + 1); }, 4500);
+</script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   var map = L.map('map').setView([32.85, -96.95], 10);
@@ -129,6 +211,39 @@
   plants.forEach(function(p) {
     L.marker([p.lat, p.lng]).addTo(map).bindPopup(p.name);
   });
+
+  // Delivery location picker: the customer drops a pin where they want the concrete
+  var dMap = L.map('deliveryMap').setView([32.7767, -96.7970], 11);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(dMap);
+  var pin = null;
+  var pinLatLng = null;
+  dMap.on('click', function(e) {
+    pinLatLng = e.latlng;
+    if (pin) { pin.setLatLng(e.latlng); }
+    else { pin = L.marker(e.latlng).addTo(dMap); }
+    document.getElementById('pinInfo').textContent =
+      'Delivery pin set: ' + e.latlng.lat.toFixed(5) + ', ' + e.latlng.lng.toFixed(5) +
+      ' — now fill in your info below and send it.';
+  });
+  function sendQuote() {
+    var name = document.getElementById('qName').value.trim();
+    if (!name) { alert('Please enter your name.'); return; }
+    var lines = ['Hello JMP Concrete & Dispatch, I need concrete delivered.', 'Name: ' + name];
+    var phone = document.getElementById('qPhone').value.trim();
+    if (phone) lines.push('Phone: ' + phone);
+    var addr = document.getElementById('qAddress').value.trim();
+    if (addr) lines.push('Address: ' + addr);
+    if (pinLatLng) lines.push('Delivery location: https://www.google.com/maps?q=' + pinLatLng.lat.toFixed(6) + ',' + pinLatLng.lng.toFixed(6));
+    var yards = document.getElementById('qYards').value.trim();
+    if (yards) lines.push('Yards needed: ' + yards);
+    var date = document.getElementById('qDate').value;
+    if (date) lines.push('Delivery date: ' + date);
+    var notes = document.getElementById('qNotes').value.trim();
+    if (notes) lines.push('Notes: ' + notes);
+    window.open('https://wa.me/17863662018?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+  }
 </script>
 </body>
 </html>
