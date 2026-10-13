@@ -286,5 +286,18 @@
     window.open('https://wa.me/17863662018?text=' + encodeURIComponent(lines.join('\n')), '_blank');
   }
 </script>
+<style>
+  .float-bar{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(24,26,31,.94);box-shadow:0 -2px 12px rgba(0,0,0,.25)}
+  .float-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;font-family:inherit}
+  .float-bar .fb-call{background:#f5a623;color:#20242a}
+  .float-bar .fb-wa{background:#25d366;color:#ffffff}
+  @media (min-width:769px){.float-bar{left:auto;right:18px;bottom:18px;background:transparent;box-shadow:none;padding:0;flex-direction:column;gap:10px}.float-bar a{flex:none;padding:13px 22px;box-shadow:0 4px 16px rgba(0,0,0,.30);border-radius:999px}}
+  body{padding-bottom:80px}
+  @media (min-width:769px){body{padding-bottom:0}}
+</style>
+<div class="float-bar">
+  <a class="fb-call" href="tel:+17863662018">&#128222; Call Now</a>
+  <a class="fb-wa" href="https://wa.me/17863662018" target="_blank" rel="noopener">&#128172; WhatsApp</a>
+</div>
 </body>
 </html>
