@@ -64,6 +64,17 @@
   .psi-tag-res { color: #2e6da4; font-weight: bold; }
   .psi-tag-com { color: #c47b12; font-weight: bold; }
 </style>
+<style>
+  .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .testi { background:#fff; border-radius:10px; padding:22px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  .testi .stars { color:#f5a623; font-size:19px; letter-spacing:2px; margin-bottom:10px; }
+  .testi .who { margin-top:12px; font-weight:bold; color:#20242a; font-size:14px; }
+  .faq details { background:#fff; border-radius:10px; padding:16px 20px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  .faq summary { font-weight:bold; cursor:pointer; color:#20242a; font-size:17px; }
+  .faq details p { margin-top:10px; color:#444; }
+  #calcResult { margin-top:16px; font-size:17px; font-weight:bold; color:#20242a; }
+  #calcUse { display:none; width:100%; text-align:center; background:#25d366; color:#fff; font-weight:bold; font-size:16px; padding:12px; border:none; border-radius:6px; cursor:pointer; margin-top:10px; }
+</style>
 </head>
 <body>
 
@@ -121,6 +132,27 @@
 </section>
 
 <section>
+  <h2 data-i18n="testiTitle">What Our Customers Say</h2>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <p data-i18n="t1Text">The trucks arrived right when my crew was ready. No waiting around and no wasted concrete — that's how every pour should go.</p>
+      <p class="who" data-i18n="t1Who">Contractor — Dallas, TX</p>
+    </div>
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <p data-i18n="t2Text">They helped me figure out exactly how many yards I needed for my driveway and the price was fair. Fast and easy to work with.</p>
+      <p class="who" data-i18n="t2Who">Homeowner — Grand Prairie, TX</p>
+    </div>
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <p data-i18n="t3Text">One call and the concrete is on its way. I use JMP for all my jobs across Dallas–Fort Worth.</p>
+      <p class="who" data-i18n="t3Who">Contractor — Fort Worth, TX</p>
+    </div>
+  </div>
+</section>
+
+<section>
   <h2 data-i18n="servicesTitle">Our Services</h2>
   <div class="cards">
     <div class="card">
@@ -162,6 +194,22 @@
     <div class="psi-track"><div class="psi-bar psi-com" style="width:100%;" data-i18n="psi5000">Structural work, heavy loads</div></div>
   </div>
   <p style="font-size:14px;color:#555;" data-i18n="psiNote">Residential jobs typically use 3000–3500 PSI. Commercial work starts at 4000 PSI and up. Not sure which one you need? Call us at (786) 366-2018 and we'll help you pick the right mix.</p>
+</section>
+
+<section>
+  <h2 data-i18n="calcTitle">Concrete Calculator</h2>
+  <p style="margin-bottom:14px;" data-i18n="calcText">Not sure how much concrete you need? Enter your measurements and we'll do the math — with a little extra included, so you don't run short.</p>
+  <div class="quote-form">
+    <label for="cLength" data-i18n="cLength">Length (feet)</label>
+    <input id="cLength" type="number" min="0" step="0.5" placeholder="e.g. 20" data-i18n-ph="cLengthPh">
+    <label for="cWidth" data-i18n="cWidth">Width (feet)</label>
+    <input id="cWidth" type="number" min="0" step="0.5" placeholder="e.g. 10" data-i18n-ph="cWidthPh">
+    <label for="cThick" data-i18n="cThick">Thickness (inches)</label>
+    <input id="cThick" type="number" min="0" step="0.5" placeholder="e.g. 4" data-i18n-ph="cThickPh">
+    <button class="send" style="background:#f5a623;color:#20242a;" onclick="calcYards()" data-i18n="cBtn">Calculate</button>
+    <p id="calcResult"></p>
+    <button id="calcUse" onclick="useCalc()" data-i18n="cUse">Use this amount in my quote</button>
+  </div>
 </section>
 
 <section>
@@ -215,6 +263,18 @@
     <img src="vendedor-mes.jpg" alt="Salesperson of the Month" style="width:220px;height:220px;object-fit:cover;border-radius:50%;margin-bottom:14px;">
     <p style="font-size:22px;"><strong>Carlos Mendoza</strong></p>
     <p data-i18n="sellerText">October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.</p>
+  </div>
+</section>
+
+<section>
+  <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+  <div class="faq">
+    <details><summary data-i18n="faqQ1">How do I know how many yards I need?</summary><p data-i18n="faqA1">Use the calculator on this page: measure the length and width in feet and the thickness in inches, and it tells you the yards. Or call us at (786) 366-2018 and we'll help you figure it out.</p></details>
+    <details><summary data-i18n="faqQ2">How far in advance should I place my order?</summary><p data-i18n="faqA2">As early as you can. We dispatch 24/7 and can often schedule for the same day, depending on plant availability.</p></details>
+    <details><summary data-i18n="faqQ3">What areas do you deliver to?</summary><p data-i18n="faqA3">All of Dallas–Fort Worth and surrounding areas, including Dallas, Fort Worth, Garland, Mesquite, Irving, Arlington, Plano, Richardson, Grand Prairie and Carrollton.</p></details>
+    <details><summary data-i18n="faqQ4">What concrete strength (PSI) do I need?</summary><p data-i18n="faqA4">Most residential work uses 3000–3500 PSI; commercial work starts at 4000 PSI. Check the strength guide on this page, or call us and we'll help you pick the right mix.</p></details>
+    <details><summary data-i18n="faqQ5">How much does it cost?</summary><p data-i18n="faqA5">The price depends on the mix, the number of yards and the delivery distance. Call or message us on WhatsApp and we'll give you today's price right away.</p></details>
+    <details><summary data-i18n="faqQ6">How do I place an order?</summary><p data-i18n="faqA6">Call (786) 366-2018, message us on WhatsApp, or fill out the quote form on this page and drop a pin where you need the concrete.</p></details>
   </div>
 </section>
 
@@ -300,6 +360,41 @@
       msgNotes: "Notes: ",
       sellerTitle: "Salesperson of the Month",
       sellerText: "October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.",
+      testiTitle: "What Our Customers Say",
+      t1Text: "The trucks arrived right when my crew was ready. No waiting around and no wasted concrete — that's how every pour should go.",
+      t1Who: "Contractor — Dallas, TX",
+      t2Text: "They helped me figure out exactly how many yards I needed for my driveway and the price was fair. Fast and easy to work with.",
+      t2Who: "Homeowner — Grand Prairie, TX",
+      t3Text: "One call and the concrete is on its way. I use JMP for all my jobs across Dallas–Fort Worth.",
+      t3Who: "Contractor — Fort Worth, TX",
+      calcTitle: "Concrete Calculator",
+      calcText: "Not sure how much concrete you need? Enter your measurements and we'll do the math — with a little extra included, so you don't run short.",
+      cLength: "Length (feet)",
+      cLengthPh: "e.g. 20",
+      cWidth: "Width (feet)",
+      cWidthPh: "e.g. 10",
+      cThick: "Thickness (inches)",
+      cThickPh: "e.g. 4",
+      cBtn: "Calculate",
+      calcErr: "Enter the length, width and thickness first.",
+      calcResA: "You need about ",
+      calcResUnit: " cubic yards.",
+      calcResB: " We recommend ordering ",
+      calcResC: " yards (includes ~10% extra).",
+      cUse: "Use this amount in my quote",
+      faqTitle: "Frequently Asked Questions",
+      faqQ1: "How do I know how many yards I need?",
+      faqA1: "Use the calculator on this page: measure the length and width in feet and the thickness in inches, and it tells you the yards. Or call us at (786) 366-2018 and we'll help you figure it out.",
+      faqQ2: "How far in advance should I place my order?",
+      faqA2: "As early as you can. We dispatch 24/7 and can often schedule for the same day, depending on plant availability.",
+      faqQ3: "What areas do you deliver to?",
+      faqA3: "All of Dallas–Fort Worth and surrounding areas, including Dallas, Fort Worth, Garland, Mesquite, Irving, Arlington, Plano, Richardson, Grand Prairie and Carrollton.",
+      faqQ4: "What concrete strength (PSI) do I need?",
+      faqA4: "Most residential work uses 3000–3500 PSI; commercial work starts at 4000 PSI. Check the strength guide on this page, or call us and we'll help you pick the right mix.",
+      faqQ5: "How much does it cost?",
+      faqA5: "The price depends on the mix, the number of yards and the delivery distance. Call or message us on WhatsApp and we'll give you today's price right away.",
+      faqQ6: "How do I place an order?",
+      faqA6: "Call (786) 366-2018, message us on WhatsApp, or fill out the quote form on this page and drop a pin where you need the concrete.",
       contactTitle: "Contact Us",
       contactArea: "Dallas, Texas — serving the entire DFW metroplex",
       contactPhone: "Phone:",
@@ -372,6 +467,41 @@
       msgNotes: "Notas: ",
       sellerTitle: "Vendedor del mes",
       sellerText: "Octubre 2026 — Reconocido por su excelente servicio y dedicación a nuestros clientes en todo el área de Dallas–Fort Worth.",
+      testiTitle: "Lo que dicen nuestros clientes",
+      t1Text: "Los camiones llegaron justo cuando mi equipo estaba listo. Sin esperas y sin concreto desperdiciado: así debería ser cada colado.",
+      t1Who: "Contratista — Dallas, TX",
+      t2Text: "Me ayudaron a calcular exactamente cuántas yardas necesitaba para mi entrada y el precio fue justo. Rápidos y fáciles para trabajar.",
+      t2Who: "Propietario — Grand Prairie, TX",
+      t3Text: "Una llamada y el concreto va en camino. Uso JMP para todos mis trabajos en Dallas–Fort Worth.",
+      t3Who: "Contratista — Fort Worth, TX",
+      calcTitle: "Calculadora de concreto",
+      calcText: "¿No sabes cuánto concreto necesitas? Escribe tus medidas y hacemos la cuenta por ti, con un poco extra incluido para que no te quedes corto.",
+      cLength: "Largo (pies)",
+      cLengthPh: "ej. 20",
+      cWidth: "Ancho (pies)",
+      cWidthPh: "ej. 10",
+      cThick: "Grosor (pulgadas)",
+      cThickPh: "ej. 4",
+      cBtn: "Calcular",
+      calcErr: "Primero escribe el largo, el ancho y el grosor.",
+      calcResA: "Necesitas unas ",
+      calcResUnit: " yardas cúbicas.",
+      calcResB: " Te recomendamos pedir ",
+      calcResC: " yardas (incluye ~10% extra).",
+      cUse: "Usar esta cantidad en mi cotización",
+      faqTitle: "Preguntas frecuentes",
+      faqQ1: "¿Cómo sé cuántas yardas necesito?",
+      faqA1: "Usa la calculadora de esta página: mide el largo y el ancho en pies y el grosor en pulgadas, y te dice las yardas. O llámanos al (786) 366-2018 y te ayudamos a calcularlo.",
+      faqQ2: "¿Con cuánta anticipación debo hacer mi pedido?",
+      faqA2: "Entre más temprano, mejor. Despachamos 24/7 y muchas veces podemos programar para el mismo día, según la disponibilidad de las plantas.",
+      faqQ3: "¿A qué áreas entregan?",
+      faqA3: "A todo Dallas–Fort Worth y alrededores, incluyendo Dallas, Fort Worth, Garland, Mesquite, Irving, Arlington, Plano, Richardson, Grand Prairie y Carrollton.",
+      faqQ4: "¿Qué resistencia (PSI) necesita mi concreto?",
+      faqA4: "La mayoría del trabajo residencial usa 3000–3500 PSI; el comercial empieza en 4000 PSI. Revisa la guía de resistencia de esta página, o llámanos y te ayudamos a elegir la mezcla correcta.",
+      faqQ5: "¿Cuánto cuesta?",
+      faqA5: "El precio depende de la mezcla, la cantidad de yardas y la distancia de entrega. Llámanos o escríbenos por WhatsApp y te damos el precio de hoy de inmediato.",
+      faqQ6: "¿Cómo hago un pedido?",
+      faqA6: "Llama al (786) 366-2018, escríbenos por WhatsApp, o llena el formulario de cotización de esta página marcando con un pin dónde necesitas el concreto.",
       contactTitle: "Contáctanos",
       contactArea: "Dallas, Texas — servimos todo el área metropolitana DFW",
       contactPhone: "Teléfono:",
@@ -462,6 +592,32 @@
     var notes = document.getElementById('qNotes').value.trim();
     if (notes) lines.push(t('msgNotes') + notes);
     window.open('https://wa.me/17863662018?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+  }
+  var calcRecYards = 0;
+  function calcYards() {
+    var L = parseFloat(document.getElementById('cLength').value);
+    var W = parseFloat(document.getElementById('cWidth').value);
+    var T = parseFloat(document.getElementById('cThick').value);
+    var res = document.getElementById('calcResult');
+    var use = document.getElementById('calcUse');
+    if (!L || !W || !T || L <= 0 || W <= 0 || T <= 0) {
+      res.textContent = t('calcErr');
+      use.style.display = 'none';
+      calcRecYards = 0;
+      return;
+    }
+    var exact = L * W * (T / 12) / 27;
+    var rec = Math.ceil(exact * 1.1 * 2) / 2;
+    calcRecYards = rec;
+    res.textContent = t('calcResA') + exact.toFixed(2) + t('calcResUnit') + t('calcResB') + rec.toFixed(1) + t('calcResC');
+    use.style.display = 'block';
+  }
+  function useCalc() {
+    if (calcRecYards > 0) {
+      var q = document.getElementById('qYards');
+      q.value = calcRecYards;
+      q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
   // Idioma inicial: preferencia guardada, o el idioma del navegador, o inglés
   var startLang = 'en';
