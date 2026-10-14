@@ -531,6 +531,8 @@
     document.getElementById('btnLangEs').classList.toggle('on', l === 'es');
     try { localStorage.setItem('jmp-lang', l); } catch (e) {}
     if (!pinLatLng) { document.getElementById('pinInfo').textContent = I18N[l].pinNone; }
+    var cr = document.getElementById('calcResult');
+    if (cr && cr.textContent && typeof calcYards === 'function') { try { calcYards(); } catch (e) {} }
   }
 </script>
 <script>
