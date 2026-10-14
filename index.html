@@ -12,10 +12,13 @@
   header .brand { font-size:20px; font-weight:bold; letter-spacing:.5px; }
   header .brand span { color:#f5a623; }
   header .phone { color:#fff; text-decoration:none; font-weight:bold; background:#f5a623; color:#20242a; padding:9px 16px; border-radius:6px; }
+  .lang-toggle { display:flex; gap:6px; align-items:center; }
+  .lang-toggle button { background:transparent; color:#fff; border:1px solid #f5a623; font-weight:bold; font-size:14px; padding:8px 14px; border-radius:6px; cursor:pointer; font-family:inherit; }
+  .lang-toggle button.on { background:#f5a623; color:#20242a; }
   .hero { background:#030509; color:#fff; text-align:center; padding:64px 20px; }
   .site-logo { display:block; width:min(440px,88%); height:auto; margin:0 auto 20px; mix-blend-mode:screen; }
   .hero h1 { font-size:34px; margin-bottom:14px; }
-  .hero h1 span { color:#f5a623; }
+  .hero h1 span.accent { color:#f5a623; }
   .hero p { font-size:18px; max-width:640px; margin:0 auto 26px; color:#d8dce2; }
   .btn { display:inline-block; text-decoration:none; font-weight:bold; padding:13px 26px; border-radius:6px; margin:4px; }
   .btn-call { background:#f5a623; color:#20242a; }
@@ -66,39 +69,43 @@
 
 <header>
   <div class="brand">JMP CONCRETE <span>&amp; DISPATCH LLC</span></div>
-  <a class="phone" href="tel:+17863662018">Call (786) 366-2018</a>
+  <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+    <button type="button" id="btnLangEn" onclick="setLang('en')">EN</button>
+    <button type="button" id="btnLangEs" onclick="setLang('es')">ES</button>
+  </div>
+  <a class="phone" href="tel:+17863662018" data-i18n="callBtn">Call (786) 366-2018</a>
 </header>
 
 <div class="hero">
   <img class="site-logo" src="logo-jmp.jpg" alt="JMP Concrete &amp; Dispatch LLC — official logo">
-  <h1>Ready-Mix Concrete, <span>Delivered On Time</span></h1>
-  <p>We supply and dispatch concrete by the yard for contractors and homeowners across the Dallas–Fort Worth metroplex. Tell us how many yards you need and where — we handle the rest.</p>
-  <a class="btn btn-call" href="tel:+17863662018">Get a Quote: (786) 366-2018</a>
-  <a class="btn btn-wa" href="https://wa.me/17863662018" target="_blank" rel="noopener">Message us on WhatsApp</a>
+  <h1><span data-i18n="heroTitleA">Ready-Mix Concrete,</span> <span class="accent" data-i18n="heroTitleB">Delivered On Time</span></h1>
+  <p data-i18n="heroText">We supply and dispatch concrete by the yard for contractors and homeowners across the Dallas–Fort Worth metroplex. Tell us how many yards you need and where — we handle the rest.</p>
+  <a class="btn btn-call" href="tel:+17863662018" data-i18n="quoteBtn">Get a Quote: (786) 366-2018</a>
+  <a class="btn btn-wa" href="https://wa.me/17863662018" target="_blank" rel="noopener" data-i18n="waBtn">Message us on WhatsApp</a>
 </div>
 
 <section>
-  <h2>Our Work</h2>
+  <h2 data-i18n="workTitle">Our Work</h2>
   <div class="carousel" id="carousel">
     <div class="slide active">
       <img src="carrusel-1.jpg" alt="JMP mixer truck pouring concrete">
-      <div class="caption">On-time pours, every time — JMP on the job</div>
+      <div class="caption" data-i18n="cap1">On-time pours, every time — JMP on the job</div>
     </div>
     <div class="slide">
       <img src="carrusel-2.jpg" alt="Crew finishing a concrete slab">
-      <div class="caption">Crews that finish clean and on schedule</div>
+      <div class="caption" data-i18n="cap2">Crews that finish clean and on schedule</div>
     </div>
     <div class="slide">
       <img src="carrusel-3.jpg" alt="JMP truck with the Dallas skyline">
-      <div class="caption">Serving all of Dallas–Fort Worth, 24/7</div>
+      <div class="caption" data-i18n="cap3">Serving all of Dallas–Fort Worth, 24/7</div>
     </div>
     <div class="slide">
       <img src="carrusel-4.jpg" alt="Finished concrete driveway">
-      <div class="caption">Driveways and patios done right</div>
+      <div class="caption" data-i18n="cap4">Finished concrete driveway</div>
     </div>
     <div class="slide">
       <img src="carrusel-5.jpg" alt="Washed pea gravel concrete floor">
-      <div class="caption">Pea gravel exposed aggregate — washed finish</div>
+      <div class="caption" data-i18n="cap5">Pea gravel exposed aggregate — washed finish</div>
     </div>
     <button class="nav prev" onclick="moveSlide(-1)">&#10094;</button>
     <button class="nav next" onclick="moveSlide(1)">&#10095;</button>
@@ -110,56 +117,56 @@
       <span class="dot" onclick="goSlide(4)"></span>
     </div>
   </div>
-  <p style="text-align:center;margin-top:18px"><a href="https://www.tiktok.com/@concreteforeverdfw" target="_blank" rel="noopener" style="display:inline-block;background:#000000;color:#ffffff;font-weight:700;padding:13px 26px;border-radius:999px;text-decoration:none">&#127925; Watch our pours on TikTok</a></p>
+  <p style="text-align:center;margin-top:18px"><a href="https://www.tiktok.com/@concreteforeverdfw" target="_blank" rel="noopener" style="display:inline-block;background:#000000;color:#ffffff;font-weight:700;padding:13px 26px;border-radius:999px;text-decoration:none" data-i18n="tiktokBtn">&#127925; Watch our pours on TikTok</a></p>
 </section>
 
 <section>
-  <h2>Our Services</h2>
+  <h2 data-i18n="servicesTitle">Our Services</h2>
   <div class="cards">
     <div class="card">
-      <h3>Concrete by the Yard</h3>
-      <p>Ready-mix concrete sold by the cubic yard, with the mix and strength your job requires — slabs, driveways, foundations, patios and more.</p>
+      <h3 data-i18n="svc1Title">Concrete by the Yard</h3>
+      <p data-i18n="svc1Text">Ready-mix concrete sold by the cubic yard, with the mix and strength your job requires — slabs, driveways, foundations, patios and more.</p>
     </div>
     <div class="card">
-      <h3>Fast, Reliable Dispatch</h3>
-      <p>We coordinate directly with local plants and schedule your pour so the trucks arrive when your crew is ready. No waiting, no wasted loads.</p>
+      <h3 data-i18n="svc2Title">Fast, Reliable Dispatch</h3>
+      <p data-i18n="svc2Text">We coordinate directly with local plants and schedule your pour so the trucks arrive when your crew is ready. No waiting, no wasted loads.</p>
     </div>
     <div class="card">
-      <h3>Contractors &amp; Homeowners</h3>
-      <p>From large commercial pours to a small backyard project, we help you order the right amount and get it delivered to your site.</p>
+      <h3 data-i18n="svc3Title">Contractors &amp; Homeowners</h3>
+      <p data-i18n="svc3Text">From large commercial pours to a small backyard project, we help you order the right amount and get it delivered to your site.</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>Concrete Strength Guide</h2>
-  <p style="margin-bottom:16px;">How strong should your concrete be? PSI measures compressive strength — here is what each mix is typically used for:</p>
+  <h2 data-i18n="psiTitle">Concrete Strength Guide</h2>
+  <p style="margin-bottom:16px;" data-i18n="psiIntro">How strong should your concrete be? PSI measures compressive strength — here is what each mix is typically used for:</p>
   <div class="psi-row">
-    <div class="psi-head"><strong>3000 PSI</strong><span class="psi-tag-res">Residential</span></div>
-    <div class="psi-track"><div class="psi-bar psi-res" style="width:60%;">Driveways, patios, sidewalks, slabs</div></div>
+    <div class="psi-head"><strong>3000 PSI</strong><span class="psi-tag-res" data-i18n="tagRes">Residential</span></div>
+    <div class="psi-track"><div class="psi-bar psi-res" style="width:60%;" data-i18n="psi3000">Driveways, patios, sidewalks, slabs</div></div>
   </div>
   <div class="psi-row">
-    <div class="psi-head"><strong>3500 PSI</strong><span class="psi-tag-res">Residential</span></div>
-    <div class="psi-track"><div class="psi-bar psi-res" style="width:70%;">Reinforced driveways, garage floors, foundations</div></div>
+    <div class="psi-head"><strong>3500 PSI</strong><span class="psi-tag-res" data-i18n="tagRes">Residential</span></div>
+    <div class="psi-track"><div class="psi-bar psi-res" style="width:70%;" data-i18n="psi3500">Reinforced driveways, garage floors, foundations</div></div>
   </div>
   <div class="psi-row">
-    <div class="psi-head"><strong>4000 PSI</strong><span class="psi-tag-com">Commercial</span></div>
-    <div class="psi-track"><div class="psi-bar psi-com" style="width:80%;">Parking lots, commercial slabs & foundations</div></div>
+    <div class="psi-head"><strong>4000 PSI</strong><span class="psi-tag-com" data-i18n="tagCom">Commercial</span></div>
+    <div class="psi-track"><div class="psi-bar psi-com" style="width:80%;" data-i18n="psi4000">Parking lots, commercial slabs &amp; foundations</div></div>
   </div>
   <div class="psi-row">
-    <div class="psi-head"><strong>4500 PSI</strong><span class="psi-tag-com">Commercial</span></div>
-    <div class="psi-track"><div class="psi-bar psi-com" style="width:90%;">Industrial floors, heavy traffic</div></div>
+    <div class="psi-head"><strong>4500 PSI</strong><span class="psi-tag-com" data-i18n="tagCom">Commercial</span></div>
+    <div class="psi-track"><div class="psi-bar psi-com" style="width:90%;" data-i18n="psi4500">Industrial floors, heavy traffic</div></div>
   </div>
   <div class="psi-row">
-    <div class="psi-head"><strong>5000 PSI</strong><span class="psi-tag-com">Commercial</span></div>
-    <div class="psi-track"><div class="psi-bar psi-com" style="width:100%;">Structural work, heavy loads</div></div>
+    <div class="psi-head"><strong>5000 PSI</strong><span class="psi-tag-com" data-i18n="tagCom">Commercial</span></div>
+    <div class="psi-track"><div class="psi-bar psi-com" style="width:100%;" data-i18n="psi5000">Structural work, heavy loads</div></div>
   </div>
-  <p style="font-size:14px;color:#555;">Residential jobs typically use 3000–3500 PSI. Commercial work starts at 4000 PSI and up. Not sure which one you need? Call us at (786) 366-2018 and we'll help you pick the right mix.</p>
+  <p style="font-size:14px;color:#555;" data-i18n="psiNote">Residential jobs typically use 3000–3500 PSI. Commercial work starts at 4000 PSI and up. Not sure which one you need? Call us at (786) 366-2018 and we'll help you pick the right mix.</p>
 </section>
 
 <section>
-  <h2>Service Area</h2>
-  <p style="margin-bottom:14px;">Proudly serving all of Dallas–Fort Worth — the entire metroplex and surrounding areas, including:</p>
+  <h2 data-i18n="areaTitle">Service Area</h2>
+  <p style="margin-bottom:14px;" data-i18n="areaText">Proudly serving all of Dallas–Fort Worth — the entire metroplex and surrounding areas, including:</p>
   <div class="areas">
     <p>• Dallas</p>
     <p>• Fort Worth</p>
@@ -175,59 +182,227 @@
 </section>
 
 <section>
-  <h2>Coverage Map — Dallas–Fort Worth</h2>
-  <p style="margin-bottom:14px;">We dispatch concrete from plants across the metroplex, so your pour arrives fast anywhere in Dallas–Fort Worth and surrounding areas.</p>
+  <h2 data-i18n="mapTitle">Coverage Map — Dallas–Fort Worth</h2>
+  <p style="margin-bottom:14px;" data-i18n="mapText">We dispatch concrete from plants across the metroplex, so your pour arrives fast anywhere in Dallas–Fort Worth and surrounding areas.</p>
   <div id="map"></div>
 </section>
 
 <section>
-  <h2>Where Do You Need the Concrete?</h2>
-  <p style="margin-bottom:14px;">Tap the map to drop a pin on the exact spot where you need the concrete delivered, then send us your info — we'll get back to you with a quote.</p>
+  <h2 data-i18n="quoteTitle">Where Do You Need the Concrete?</h2>
+  <p style="margin-bottom:14px;" data-i18n="quoteText">Tap the map to drop a pin on the exact spot where you need the concrete delivered, then send us your info — we'll get back to you with a quote.</p>
   <div id="deliveryMap"></div>
-  <p id="pinInfo">No pin yet — tap the map to mark your delivery location.</p>
+  <p id="pinInfo" data-i18n="pinNone">No pin yet — tap the map to mark your delivery location.</p>
   <div class="quote-form">
-    <label for="qName">Your name *</label>
-    <input id="qName" type="text" placeholder="Full name">
-    <label for="qPhone">Phone</label>
+    <label for="qName" data-i18n="fName">Your name *</label>
+    <input id="qName" type="text" placeholder="Full name" data-i18n-ph="fNamePh">
+    <label for="qPhone" data-i18n="fPhone">Phone</label>
     <input id="qPhone" type="tel" placeholder="(555) 555-5555">
-    <label for="qAddress">Delivery address</label>
-    <input id="qAddress" type="text" placeholder="Street, city, ZIP">
-    <label for="qYards">How many yards do you need?</label>
-    <input id="qYards" type="number" min="1" step="0.5" placeholder="e.g. 6">
-    <label for="qDate">Delivery date</label>
+    <label for="qAddress" data-i18n="fAddress">Delivery address</label>
+    <input id="qAddress" type="text" placeholder="Street, city, ZIP" data-i18n-ph="fAddressPh">
+    <label for="qYards" data-i18n="fYards">How many yards do you need?</label>
+    <input id="qYards" type="number" min="1" step="0.5" placeholder="e.g. 6" data-i18n-ph="fYardsPh">
+    <label for="qDate" data-i18n="fDate">Delivery date</label>
     <input id="qDate" type="date">
-    <label for="qNotes">Notes</label>
-    <textarea id="qNotes" rows="3" placeholder="Mix/strength, access details, anything we should know"></textarea>
-    <button class="send" onclick="sendQuote()">Send by WhatsApp</button>
+    <label for="qNotes" data-i18n="fNotes">Notes</label>
+    <textarea id="qNotes" rows="3" placeholder="Mix/strength, access details, anything we should know" data-i18n-ph="fNotesPh"></textarea>
+    <button class="send" onclick="sendQuote()" data-i18n="fSend">Send by WhatsApp</button>
   </div>
 </section>
 
 <section>
-  <h2>Salesperson of the Month</h2>
+  <h2 data-i18n="sellerTitle">Salesperson of the Month</h2>
   <div class="contact-box" style="text-align:center;">
     <img src="vendedor-mes.jpg" alt="Salesperson of the Month" style="width:220px;height:220px;object-fit:cover;border-radius:50%;margin-bottom:14px;">
     <p style="font-size:22px;"><strong>Carlos Mendoza</strong></p>
-    <p>October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.</p>
+    <p data-i18n="sellerText">October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.</p>
   </div>
 </section>
 
 <section>
-  <h2>Contact Us</h2>
+  <h2 data-i18n="contactTitle">Contact Us</h2>
   <div class="contact-box">
     <p><strong>JMP Concrete &amp; Dispatch LLC</strong></p>
-    <p>Dallas, Texas — serving the entire DFW metroplex</p>
-    <p>Phone: <a href="tel:+17863662018">(786) 366-2018</a></p>
-    <p>Email: <a href="mailto:jmpconcreteanddispatchllc@gmail.com">jmpconcreteanddispatchllc@gmail.com</a></p>
-    <p>Hours: Open 24 hours, 7 days a week</p>
+    <p data-i18n="contactArea">Dallas, Texas — serving the entire DFW metroplex</p>
+    <p><span data-i18n="contactPhone">Phone:</span> <a href="tel:+17863662018">(786) 366-2018</a></p>
+    <p><span data-i18n="contactEmail">Email:</span> <a href="mailto:jmpconcreteanddispatchllc@gmail.com">jmpconcreteanddispatchllc@gmail.com</a></p>
+    <p data-i18n="contactHours">Hours: Open 24 hours, 7 days a week</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 JMP Concrete &amp; Dispatch LLC — Dallas, Texas. All rights reserved.</p>
+  <p data-i18n="footerText">© 2026 JMP Concrete &amp; Dispatch LLC — Dallas, Texas. All rights reserved.</p>
 </footer>
 
-<a class="wa-float" href="https://wa.me/17863662018" target="_blank" rel="noopener">WhatsApp Us</a>
+<a class="wa-float" href="https://wa.me/17863662018" target="_blank" rel="noopener" data-i18n="waFloat">WhatsApp Us</a>
 
+<script>
+  var I18N = {
+    en: {
+      title: "JMP Concrete & Dispatch LLC | Ready-Mix Concrete Delivery in Dallas–Fort Worth",
+      callBtn: "Call (786) 366-2018",
+      heroTitleA: "Ready-Mix Concrete,",
+      heroTitleB: "Delivered On Time",
+      heroText: "We supply and dispatch concrete by the yard for contractors and homeowners across the Dallas–Fort Worth metroplex. Tell us how many yards you need and where — we handle the rest.",
+      quoteBtn: "Get a Quote: (786) 366-2018",
+      waBtn: "Message us on WhatsApp",
+      workTitle: "Our Work",
+      cap1: "On-time pours, every time — JMP on the job",
+      cap2: "Crews that finish clean and on schedule",
+      cap3: "Serving all of Dallas–Fort Worth, 24/7",
+      cap4: "Finished concrete driveway",
+      cap5: "Pea gravel exposed aggregate — washed finish",
+      tiktokBtn: "\uD83C\uDFB5 Watch our pours on TikTok",
+      servicesTitle: "Our Services",
+      svc1Title: "Concrete by the Yard",
+      svc1Text: "Ready-mix concrete sold by the cubic yard, with the mix and strength your job requires — slabs, driveways, foundations, patios and more.",
+      svc2Title: "Fast, Reliable Dispatch",
+      svc2Text: "We coordinate directly with local plants and schedule your pour so the trucks arrive when your crew is ready. No waiting, no wasted loads.",
+      svc3Title: "Contractors & Homeowners",
+      svc3Text: "From large commercial pours to a small backyard project, we help you order the right amount and get it delivered to your site.",
+      psiTitle: "Concrete Strength Guide",
+      psiIntro: "How strong should your concrete be? PSI measures compressive strength — here is what each mix is typically used for:",
+      tagRes: "Residential",
+      tagCom: "Commercial",
+      psi3000: "Driveways, patios, sidewalks, slabs",
+      psi3500: "Reinforced driveways, garage floors, foundations",
+      psi4000: "Parking lots, commercial slabs & foundations",
+      psi4500: "Industrial floors, heavy traffic",
+      psi5000: "Structural work, heavy loads",
+      psiNote: "Residential jobs typically use 3000–3500 PSI. Commercial work starts at 4000 PSI and up. Not sure which one you need? Call us at (786) 366-2018 and we'll help you pick the right mix.",
+      areaTitle: "Service Area",
+      areaText: "Proudly serving all of Dallas–Fort Worth — the entire metroplex and surrounding areas, including:",
+      mapTitle: "Coverage Map — Dallas–Fort Worth",
+      mapText: "We dispatch concrete from plants across the metroplex, so your pour arrives fast anywhere in Dallas–Fort Worth and surrounding areas.",
+      quoteTitle: "Where Do You Need the Concrete?",
+      quoteText: "Tap the map to drop a pin on the exact spot where you need the concrete delivered, then send us your info — we'll get back to you with a quote.",
+      pinNone: "No pin yet — tap the map to mark your delivery location.",
+      pinSetA: "Delivery pin set: ",
+      pinSetB: " — now fill in your info below and send it.",
+      fName: "Your name *",
+      fNamePh: "Full name",
+      fPhone: "Phone",
+      fAddress: "Delivery address",
+      fAddressPh: "Street, city, ZIP",
+      fYards: "How many yards do you need?",
+      fYardsPh: "e.g. 6",
+      fDate: "Delivery date",
+      fNotes: "Notes",
+      fNotesPh: "Mix/strength, access details, anything we should know",
+      fSend: "Send by WhatsApp",
+      nameAlert: "Please enter your name.",
+      msgHello: "Hello JMP Concrete & Dispatch, I need concrete delivered.",
+      msgName: "Name: ",
+      msgPhone: "Phone: ",
+      msgAddress: "Address: ",
+      msgLocation: "Delivery location: ",
+      msgYards: "Yards needed: ",
+      msgDate: "Delivery date: ",
+      msgNotes: "Notes: ",
+      sellerTitle: "Salesperson of the Month",
+      sellerText: "October 2026 — Recognized for outstanding service and dedication to our customers across the Dallas–Fort Worth metroplex.",
+      contactTitle: "Contact Us",
+      contactArea: "Dallas, Texas — serving the entire DFW metroplex",
+      contactPhone: "Phone:",
+      contactEmail: "Email:",
+      contactHours: "Hours: Open 24 hours, 7 days a week",
+      footerText: "© 2026 JMP Concrete & Dispatch LLC — Dallas, Texas. All rights reserved.",
+      waFloat: "WhatsApp Us",
+      fbCall: "\uD83D\uDCDE Call Now"
+    },
+    es: {
+      title: "JMP Concrete & Dispatch LLC | Entrega de concreto premezclado en Dallas–Fort Worth",
+      callBtn: "Llamar (786) 366-2018",
+      heroTitleA: "Concreto premezclado,",
+      heroTitleB: "entregado a tiempo",
+      heroText: "Suministramos y despachamos concreto por yarda para contratistas y propietarios en todo el área de Dallas–Fort Worth. Dinos cuántas yardas necesitas y dónde — nosotros nos encargamos del resto.",
+      quoteBtn: "Pide tu cotización: (786) 366-2018",
+      waBtn: "Escríbenos por WhatsApp",
+      workTitle: "Nuestro trabajo",
+      cap1: "Colados puntuales, siempre — JMP en acción",
+      cap2: "Equipos que terminan limpio y a tiempo",
+      cap3: "Sirviendo todo Dallas–Fort Worth, 24/7",
+      cap4: "Entrada de concreto terminada",
+      cap5: "Agregado expuesto de gravilla — acabado lavado",
+      tiktokBtn: "\uD83C\uDFB5 Mira nuestros colados en TikTok",
+      servicesTitle: "Nuestros servicios",
+      svc1Title: "Concreto por yarda",
+      svc1Text: "Concreto premezclado vendido por yarda cúbica, con la mezcla y la resistencia que tu obra necesita: losas, entradas, cimientos, patios y más.",
+      svc2Title: "Despacho rápido y confiable",
+      svc2Text: "Coordinamos directo con las plantas locales y programamos tu colado para que los camiones lleguen cuando tu equipo esté listo. Sin esperas y sin cargas desperdiciadas.",
+      svc3Title: "Contratistas y propietarios",
+      svc3Text: "Desde colados comerciales grandes hasta un proyecto pequeño en tu patio, te ayudamos a pedir la cantidad correcta y a entregarla en tu obra.",
+      psiTitle: "Guía de resistencia del concreto",
+      psiIntro: "¿Qué tan resistente debe ser tu concreto? El PSI mide la resistencia a la compresión; esto es lo que se usa típicamente cada mezcla:",
+      tagRes: "Residencial",
+      tagCom: "Comercial",
+      psi3000: "Entradas, patios, banquetas, losas",
+      psi3500: "Entradas reforzadas, pisos de garaje, cimientos",
+      psi4000: "Estacionamientos, losas y cimientos comerciales",
+      psi4500: "Pisos industriales, tráfico pesado",
+      psi5000: "Obra estructural, cargas pesadas",
+      psiNote: "Los trabajos residenciales usan normalmente 3000–3500 PSI. El trabajo comercial empieza en 4000 PSI en adelante. ¿No sabes cuál necesitas? Llámanos al (786) 366-2018 y te ayudamos a elegir la mezcla correcta.",
+      areaTitle: "Área de servicio",
+      areaText: "Servimos con orgullo todo Dallas–Fort Worth: todo el área metropolitana y alrededores, incluyendo:",
+      mapTitle: "Mapa de cobertura — Dallas–Fort Worth",
+      mapText: "Despachamos concreto desde plantas en todo el área metropolitana, para que tu colado llegue rápido a cualquier parte de Dallas–Fort Worth y alrededores.",
+      quoteTitle: "¿Dónde necesitas el concreto?",
+      quoteText: "Toca el mapa para marcar el punto exacto donde necesitas el concreto y envíanos tus datos: te respondemos con una cotización.",
+      pinNone: "Aún no marcas el punto: toca el mapa para marcar dónde va la entrega.",
+      pinSetA: "Punto de entrega marcado: ",
+      pinSetB: " — ahora llena tus datos abajo y envíalos.",
+      fName: "Tu nombre *",
+      fNamePh: "Nombre completo",
+      fPhone: "Teléfono",
+      fAddress: "Dirección de entrega",
+      fAddressPh: "Calle, ciudad, código postal",
+      fYards: "¿Cuántas yardas necesitas?",
+      fYardsPh: "ej. 6",
+      fDate: "Fecha de entrega",
+      fNotes: "Notas",
+      fNotesPh: "Mezcla/resistencia, detalles de acceso, todo lo que debamos saber",
+      fSend: "Enviar por WhatsApp",
+      nameAlert: "Por favor escribe tu nombre.",
+      msgHello: "Hola JMP Concrete & Dispatch, necesito una entrega de concreto.",
+      msgName: "Nombre: ",
+      msgPhone: "Teléfono: ",
+      msgAddress: "Dirección: ",
+      msgLocation: "Ubicación de entrega: ",
+      msgYards: "Yardas necesarias: ",
+      msgDate: "Fecha de entrega: ",
+      msgNotes: "Notas: ",
+      sellerTitle: "Vendedor del mes",
+      sellerText: "Octubre 2026 — Reconocido por su excelente servicio y dedicación a nuestros clientes en todo el área de Dallas–Fort Worth.",
+      contactTitle: "Contáctanos",
+      contactArea: "Dallas, Texas — servimos todo el área metropolitana DFW",
+      contactPhone: "Teléfono:",
+      contactEmail: "Correo electrónico:",
+      contactHours: "Horario: Abierto 24 horas, los 7 días de la semana",
+      footerText: "© 2026 JMP Concrete & Dispatch LLC — Dallas, Texas. Todos los derechos reservados.",
+      waFloat: "Escríbenos",
+      fbCall: "\uD83D\uDCDE Llamar ahora"
+    }
+  };
+  var JMP_LANG = 'en';
+  function t(key) { return (I18N[JMP_LANG] && I18N[JMP_LANG][key]) || I18N.en[key] || key; }
+  function setLang(l) {
+    if (!I18N[l]) l = 'en';
+    JMP_LANG = l;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var k = el.getAttribute('data-i18n');
+      if (I18N[l][k] !== undefined) el.textContent = I18N[l][k];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el) {
+      var k = el.getAttribute('data-i18n-ph');
+      if (I18N[l][k] !== undefined) el.setAttribute('placeholder', I18N[l][k]);
+    });
+    document.documentElement.lang = l;
+    document.title = I18N[l].title;
+    document.getElementById('btnLangEn').classList.toggle('on', l === 'en');
+    document.getElementById('btnLangEs').classList.toggle('on', l === 'es');
+    try { localStorage.setItem('jmp-lang', l); } catch (e) {}
+    if (!pinLatLng) { document.getElementById('pinInfo').textContent = I18N[l].pinNone; }
+  }
+</script>
 <script>
   var slideIdx = 0;
   var slides = document.querySelectorAll('#carousel .slide');
@@ -268,26 +443,30 @@
     if (pin) { pin.setLatLng(e.latlng); }
     else { pin = L.marker(e.latlng).addTo(dMap); }
     document.getElementById('pinInfo').textContent =
-      'Delivery pin set: ' + e.latlng.lat.toFixed(5) + ', ' + e.latlng.lng.toFixed(5) +
-      ' — now fill in your info below and send it.';
+      t('pinSetA') + e.latlng.lat.toFixed(5) + ', ' + e.latlng.lng.toFixed(5) +
+      t('pinSetB');
   });
   function sendQuote() {
     var name = document.getElementById('qName').value.trim();
-    if (!name) { alert('Please enter your name.'); return; }
-    var lines = ['Hello JMP Concrete & Dispatch, I need concrete delivered.', 'Name: ' + name];
+    if (!name) { alert(t('nameAlert')); return; }
+    var lines = [t('msgHello'), t('msgName') + name];
     var phone = document.getElementById('qPhone').value.trim();
-    if (phone) lines.push('Phone: ' + phone);
+    if (phone) lines.push(t('msgPhone') + phone);
     var addr = document.getElementById('qAddress').value.trim();
-    if (addr) lines.push('Address: ' + addr);
-    if (pinLatLng) lines.push('Delivery location: https://www.google.com/maps?q=' + pinLatLng.lat.toFixed(6) + ',' + pinLatLng.lng.toFixed(6));
+    if (addr) lines.push(t('msgAddress') + addr);
+    if (pinLatLng) lines.push(t('msgLocation') + 'https://www.google.com/maps?q=' + pinLatLng.lat.toFixed(6) + ',' + pinLatLng.lng.toFixed(6));
     var yards = document.getElementById('qYards').value.trim();
-    if (yards) lines.push('Yards needed: ' + yards);
+    if (yards) lines.push(t('msgYards') + yards);
     var date = document.getElementById('qDate').value;
-    if (date) lines.push('Delivery date: ' + date);
+    if (date) lines.push(t('msgDate') + date);
     var notes = document.getElementById('qNotes').value.trim();
-    if (notes) lines.push('Notes: ' + notes);
+    if (notes) lines.push(t('msgNotes') + notes);
     window.open('https://wa.me/17863662018?text=' + encodeURIComponent(lines.join('\n')), '_blank');
   }
+  // Idioma inicial: preferencia guardada, o el idioma del navegador, o inglés
+  var startLang = 'en';
+  try { startLang = localStorage.getItem('jmp-lang') || ((navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'); } catch (e) {}
+  setLang(startLang);
 </script>
 <style>
   .float-bar{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(24,26,31,.94);box-shadow:0 -2px 12px rgba(0,0,0,.25)}
@@ -300,7 +479,7 @@
   @media (min-width:769px){body{padding-bottom:0}}
 </style>
 <div class="float-bar">
-  <a class="fb-call" href="tel:+17863662018">&#128222; Call Now</a>
+  <a class="fb-call" href="tel:+17863662018" data-i18n="fbCall">&#128222; Call Now</a>
   <a class="fb-wa" href="https://wa.me/17863662018" target="_blank" rel="noopener">&#128172; WhatsApp</a>
   <a class="fb-tt" href="https://www.tiktok.com/@concreteforeverdfw" target="_blank" rel="noopener">&#127925; TikTok</a>
 </div>
