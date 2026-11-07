@@ -54,7 +54,7 @@
   #deliveryMap { height: 380px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.15); margin-bottom: 16px; }
   .quote-form { background: #fff; border-radius: 10px; padding: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
   .quote-form label { display: block; font-weight: bold; margin: 12px 0 5px; }
-  .quote-form input, .quote-form textarea { width: 100%; padding: 11px; border: 1px solid #c9cdd4; border-radius: 6px; font-size: 16px; }
+  .quote-form input, .quote-form textarea, .quote-form select { width: 100%; padding: 11px; border: 1px solid #c9cdd4; border-radius: 6px; font-size: 16px; background: #fff; }
   .quote-form .send { display: block; width: 100%; text-align: center; background: #25d366; color: #fff; font-weight: bold; font-size: 18px; padding: 14px; border: none; border-radius: 6px; cursor: pointer; margin-top: 18px; }
   #pinInfo { font-size: 15px; color: #444; margin-top: 8px; }
   .psi-row { margin-bottom: 14px; }
@@ -251,10 +251,21 @@
     <input id="qAddress" type="text" placeholder="Street, city, ZIP" data-i18n-ph="fAddressPh">
     <label for="qYards" data-i18n="fYards">How many yards do you need?</label>
     <input id="qYards" type="number" min="1" step="0.5" placeholder="e.g. 6" data-i18n-ph="fYardsPh">
+    <label for="qPsi" data-i18n="fPsi">Concrete strength (PSI)</label>
+    <select id="qPsi">
+      <option value="" data-i18n="psiOptSelect">Select…</option>
+      <option value="3000">3000 PSI</option>
+      <option value="3500">3500 PSI</option>
+      <option value="3600">3600 PSI</option>
+      <option value="4000">4000 PSI</option>
+      <option value="4500">4500 PSI</option>
+      <option value="5000">5000 PSI</option>
+      <option value="unknown" data-i18n="psiOptUnknown">I don't know</option>
+    </select>
     <label for="qDate" data-i18n="fDate">Delivery date</label>
     <input id="qDate" type="date">
     <label for="qNotes" data-i18n="fNotes">Notes</label>
-    <textarea id="qNotes" rows="3" placeholder="Mix/strength, access details, anything we should know" data-i18n-ph="fNotesPh"></textarea>
+    <textarea id="qNotes" rows="3" placeholder="Access details, anything we should know" data-i18n-ph="fNotesPh"></textarea>
     <button class="send" onclick="sendQuote()" data-i18n="fSend">Send by WhatsApp</button>
   </div>
 </section>
@@ -347,9 +358,12 @@
       fAddressPh: "Street, city, ZIP",
       fYards: "How many yards do you need?",
       fYardsPh: "e.g. 6",
+      fPsi: "Concrete strength (PSI)",
+      psiOptSelect: "Select…",
+      psiOptUnknown: "I don't know",
       fDate: "Delivery date",
       fNotes: "Notes",
-      fNotesPh: "Mix/strength, access details, anything we should know",
+      fNotesPh: "Access details, anything we should know",
       fSend: "Send by WhatsApp",
       nameAlert: "Please enter your name.",
       msgHello: "Hello JMP Concrete & Dispatch, I need concrete delivered.",
@@ -358,6 +372,7 @@
       msgAddress: "Address: ",
       msgLocation: "Delivery location: ",
       msgYards: "Yards needed: ",
+      msgPsi: "PSI: ",
       msgDate: "Delivery date: ",
       msgNotes: "Notes: ",
       sellerTitle: "Salesperson of the Month",
@@ -454,9 +469,12 @@
       fAddressPh: "Calle, ciudad, código postal",
       fYards: "¿Cuántas yardas necesitas?",
       fYardsPh: "ej. 6",
+      fPsi: "Resistencia del concreto (PSI)",
+      psiOptSelect: "Selecciona…",
+      psiOptUnknown: "No lo sé",
       fDate: "Fecha de entrega",
       fNotes: "Notas",
-      fNotesPh: "Mezcla/resistencia, detalles de acceso, todo lo que debamos saber",
+      fNotesPh: "Detalles de acceso, todo lo que debamos saber",
       fSend: "Enviar por WhatsApp",
       nameAlert: "Por favor escribe tu nombre.",
       msgHello: "Hola JMP Concrete & Dispatch, necesito una entrega de concreto.",
@@ -465,6 +483,7 @@
       msgAddress: "Dirección: ",
       msgLocation: "Ubicación de entrega: ",
       msgYards: "Yardas necesarias: ",
+      msgPsi: "PSI: ",
       msgDate: "Fecha de entrega: ",
       msgNotes: "Notas: ",
       sellerTitle: "Vendedor del mes",
@@ -591,6 +610,8 @@
     if (pinLatLng) lines.push(t('msgLocation') + 'https://www.google.com/maps?q=' + pinLatLng.lat.toFixed(6) + ',' + pinLatLng.lng.toFixed(6));
     var yards = document.getElementById('qYards').value.trim();
     if (yards) lines.push(t('msgYards') + yards);
+    var psi = document.getElementById('qPsi').value;
+    if (psi) lines.push(t('msgPsi') + (psi === 'unknown' ? t('psiOptUnknown') : psi));
     var date = document.getElementById('qDate').value;
     if (date) lines.push(t('msgDate') + date);
     var notes = document.getElementById('qNotes').value.trim();
